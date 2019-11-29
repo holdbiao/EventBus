@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <button class="emit">$emit 发布信息</button>
+  <button class="off">$off 解绑事件</button>
+  <script src="./bus.js"></script>
+  <script>
+    let bus = new Bus
+    console.log(bus)
+
+    // 订阅
+    console.log('订阅事件test')
+    bus.$on('test', function(arg) {
+      console.log('$on:', arg)
+    })
+
+    let emit = document.querySelector('.emit')
+    let off = document.querySelector('.off')
+    
+    // 发布
+    emit.addEventListener('click', () => {
+      bus.$emit('test', 'emit发布的信息')
+    })
+
+    // 解绑
+    off.addEventListener('click', () => {
+      bus.$off('test')
+      console.log('解绑事件成功')
+    })
+  </script>
+</body>
+</html>
